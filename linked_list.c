@@ -48,8 +48,8 @@ void rec_rev(node **h) {
     return;
 
   rec_rev(&tail);
-  head->next->next  = head;
-  head->next  = 0;
+  head->next->next = head;
+  head->next = 0;
  
   *h = tail;
 }
