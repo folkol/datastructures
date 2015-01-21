@@ -27,6 +27,20 @@ void print(node* n) {
   printf("\n");
 }
 
+node *rev(node *h) {
+  node *p = 0;
+  node *c = h;
+  node *n = h->next;
+  while(n) {
+    c->next = p;
+    p = c;
+    c = n;
+    n = n->next;
+  }
+  c->next = p;
+  return c;
+}
+
 int main(void) {
   node *h = new_node(1);
 
@@ -34,6 +48,8 @@ int main(void) {
     add(h, i);
 
   print(h);
-
+  
+  node *r = rev(h);
+  print(r);
   return 0;
 }
