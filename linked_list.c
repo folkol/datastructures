@@ -39,6 +39,18 @@ node *rev(node *h) {
   return c;
 }
 
+void rec_rev(node **h) {
+  if (!(*h) || !(*h)->next)
+    return;
+
+  node* rest = (*h)->next;
+  rec_rev(&rest);
+  (*h)->next->next  = *h;
+  (*h)->next  = 0;
+ 
+  *h = rest;
+}
+
 int main(void) {
   node *h = new_node(1);
 
@@ -46,6 +58,8 @@ int main(void) {
     add(h, i);
 
   print(h);
-  print(rev(h));
+  //print(rev(h));
+  rec_rev(&h);
+  print(h);
   return 0;
 }
