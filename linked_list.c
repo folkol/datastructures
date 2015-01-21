@@ -40,15 +40,18 @@ node *rev(node *h) {
 }
 
 void rec_rev(node **h) {
-  if (!(*h) || !(*h)->next)
+  node* head = *h;
+  if (!head)
+    return;
+  node* tail = head->next;
+  if(!tail)
     return;
 
-  node* rest = (*h)->next;
-  rec_rev(&rest);
-  (*h)->next->next  = *h;
-  (*h)->next  = 0;
+  rec_rev(&tail);
+  head->next->next  = head;
+  head->next  = 0;
  
-  *h = rest;
+  *h = tail;
 }
 
 int main(void) {
